@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  RibsDog
 //
-//  Created by PFXStudio on 2020/12/05.
+//  Created by help.nyon on 2020/12/05.
 //
 
 import UIKit
