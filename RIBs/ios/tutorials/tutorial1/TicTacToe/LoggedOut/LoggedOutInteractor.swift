@@ -17,28 +17,31 @@
 import RIBs
 import RxSwift
 
-protocol RootRouting: ViewableRouting {
+// router에 호출이 필요한 함수들 정의
+protocol LoggedOutRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
-protocol RootPresentable: Presentable {
-    var listener: RootPresentableListener? { get set }
+// viewcontroller은 Presentable을 채택 해야만 접근 가능하다.
+protocol LoggedOutPresentable: Presentable {
+    var listener: LoggedOutPresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
-protocol RootListener: class {
+// 다른 RIBs와 통신하기 위함
+protocol LoggedOutListener: class {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
-final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteractable, RootPresentableListener {
+final class LoggedOutInteractor: PresentableInteractor<LoggedOutPresentable>, LoggedOutInteractable, LoggedOutPresentableListener {
 
-    weak var router: RootRouting?
+    weak var router: LoggedOutRouting?
 
-    weak var listener: RootListener?
+    weak var listener: LoggedOutListener?
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init(presenter: RootPresentable) {
+    override init(presenter: LoggedOutPresentable) {
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -53,5 +56,19 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
         // TODO: Pause any business logic.
     }
 
-    // MARK: - LoggedOutListener
+    // MARK: - LoggedOutPresentableListener
+
+    func login(withPlayer1Name player1Name: String?, player2Name: String?) {
+        let player1NameWithDefault = playerName(player1Name, withDefaultName: "Player 1")
+        let player2NameWithDefault = playerName(player2Name, withDefaultName: "Player 2")
+        print("\(player1NameWithDefault) vs \(player2NameWithDefault)")
+    }
+
+    private func playerName(_ name: String?, withDefaultName defaultName: String) -> String {
+        if let name = name {
+            return name.isEmpty ? defaultName : name
+        } else {
+            return defaultName
+        }
+    }
 }

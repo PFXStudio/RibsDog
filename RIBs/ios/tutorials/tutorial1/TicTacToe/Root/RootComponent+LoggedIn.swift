@@ -16,22 +16,17 @@
 
 import RIBs
 
-protocol LoggedOutDependency {}
+/// The dependencies needed from the parent scope of Root to provide for the LoggedIn scope.
+// TODO: Update RootDependency protocol to inherit this protocol.
+protocol RootDependencyLoggedIn: Dependency {
 
-protocol LoggedOutListener {}
-
-protocol LoggedOutBuildable {
-    func build(withListener: LoggedOutListener) -> ViewableRouting
+    // TODO: Declare dependencies needed from the parent scope of Root to provide dependencies
+    // for the LoggedIn scope.
 }
 
-class LoggedOutInteractor: Interactor {}
+extension RootComponent: LoggedInDependency {
 
-class LoggedOutViewController: UIViewController, ViewControllable {
-}
-
-class LoggedOutBuilder: LoggedOutBuildable {
-    init(dependency: Any) {}
-    func build(withListener: LoggedOutListener) -> ViewableRouting {
-        return ViewableRouter<Interactable, ViewControllable>(interactor: LoggedOutInteractor(), viewController: LoggedOutViewController())
+    var loggedInViewController: LoggedInViewControllable {
+        return rootViewController
     }
 }
