@@ -2,7 +2,7 @@
 //  RootInteractor.swift
 //  RibsDog
 //
-//  Created by PFXStudio on 2020/12/05.
+//  Created by PFXStudio on 2020/12/15.
 //  Copyright © 2020 help.nyon. All rights reserved.
 //
 
@@ -13,6 +13,7 @@ protocol RootRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
+// viewcontroller는 RootPresentable을 통해 접근 권한이 주어짐
 protocol RootPresentable: Presentable {
     var listener: RootPresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
@@ -23,9 +24,8 @@ protocol RootListener: class {
 }
 
 final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteractable, RootPresentableListener {
-    // 라우터와 통신하기 위해
+
     weak var router: RootRouting?
-    // TODO : 다른 립스인터랙터와 통신하기 위해?
     weak var listener: RootListener?
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
@@ -40,11 +40,9 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
         // TODO: Implement business logic here.
     }
 
+    // deactive 되기 전에 호출 된다.
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
-    }
-    func didLogin(withPlayer1Name player1Name: String, player2Name: String) {
-        
     }
 }

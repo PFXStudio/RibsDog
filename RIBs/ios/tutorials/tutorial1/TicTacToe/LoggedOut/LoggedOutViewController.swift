@@ -20,13 +20,10 @@ import RxSwift
 import SnapKit
 import UIKit
 
-// 부모(Interactor)에게 전달이 필요해
 protocol LoggedOutPresentableListener: class {
     func login(withPlayer1Name: String?, player2Name: String?)
 }
 
-// LoggedOutPresentable 접근 권한 변수 프로토콜
-// LoggedOutViewControllable 라우터에서 뷰에 전달 할 프로토콜
 final class LoggedOutViewController: UIViewController, LoggedOutPresentable, LoggedOutViewControllable {
 
     weak var listener: LoggedOutPresentableListener?

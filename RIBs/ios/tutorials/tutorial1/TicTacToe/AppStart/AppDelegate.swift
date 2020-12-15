@@ -42,6 +42,10 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
 
         return true
     }
+    
+    private func applicationWillResignActive(_ application: UIApplication) {
+        
+    }
 
     // MARK: - Private
 

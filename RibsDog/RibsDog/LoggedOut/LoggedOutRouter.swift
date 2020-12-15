@@ -2,7 +2,8 @@
 //  LoggedOutRouter.swift
 //  RibsDog
 //
-//  Created by help.nyon on 2020/12/05.
+//  Created by PFXStudio on 2020/12/15.
+//  Copyright © 2020 help.nyon. All rights reserved.
 //
 
 import RIBs

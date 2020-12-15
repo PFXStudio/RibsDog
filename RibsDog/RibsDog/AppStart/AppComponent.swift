@@ -2,14 +2,14 @@
 //  AppComponent.swift
 //  RibsDog
 //
-//  Created by PFXStudio on 2020/12/05.
+//  Created by PFXStudio on 2020/12/15.
 //  Copyright © 2020 help.nyon. All rights reserved.
 //
 
-import Foundation
 import RIBs
+import Foundation
 
-class AppComponent: Component<EmptyDependency>, RootDependency {
+class AppComponent: Component<EmptyComponent>, RootDependency {
     init() {
         super.init(dependency: EmptyComponent())
     }
