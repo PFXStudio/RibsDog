@@ -17,28 +17,28 @@
 import RIBs
 import RxSwift
 
-protocol LoggedOutRouting: ViewableRouting {
+protocol OffGameRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
-protocol LoggedOutPresentable: Presentable {
-    var listener: LoggedOutPresentableListener? { get set }
+protocol OffGamePresentable: Presentable {
+    var listener: OffGamePresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
-protocol LoggedOutListener: class {
-    func didLogin(withPlayer1Name player1Name: String, player2Name: String)
+protocol OffGameListener: class {
+    func startTicTacToe()
 }
 
-final class LoggedOutInteractor: PresentableInteractor<LoggedOutPresentable>, LoggedOutInteractable, LoggedOutPresentableListener {
+final class OffGameInteractor: PresentableInteractor<OffGamePresentable>, OffGameInteractable, OffGamePresentableListener {
 
-    weak var router: LoggedOutRouting?
+    weak var router: OffGameRouting?
 
-    weak var listener: LoggedOutListener?
+    weak var listener: OffGameListener?
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init(presenter: LoggedOutPresentable) {
+    override init(presenter: OffGamePresentable) {
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -53,20 +53,9 @@ final class LoggedOutInteractor: PresentableInteractor<LoggedOutPresentable>, Lo
         // TODO: Pause any business logic.
     }
 
-    // MARK: - LoggedOutPresentableListener
+    // MARK: - OffGamePresentableListener
 
-    func login(withPlayer1Name player1Name: String?, player2Name: String?) {
-        let player1NameWithDefault = playerName(player1Name, withDefaultName: "Player 1")
-        let player2NameWithDefault = playerName(player2Name, withDefaultName: "Player 2")
-
-        listener?.didLogin(withPlayer1Name: player1NameWithDefault, player2Name: player2NameWithDefault)
-    }
-
-    private func playerName(_ name: String?, withDefaultName defaultName: String) -> String {
-        if let name = name {
-            return name.isEmpty ? defaultName : name
-        } else {
-            return defaultName
-        }
+    func startGame() {
+        listener?.startTicTacToe()
     }
 }

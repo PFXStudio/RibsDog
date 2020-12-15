@@ -2,7 +2,7 @@
 //  RootBuilder.swift
 //  RibsDog
 //
-//  Created by PFXStudio on 2020/12/05.
+//  Created by PFXStudio on 2020/12/15.
 //  Copyright © 2020 help.nyon. All rights reserved.
 //
 
@@ -14,11 +14,8 @@ protocol RootDependency: Dependency {
 }
 
 final class RootComponent: Component<RootDependency> {
-    let rootViewController: RootViewController
-    init(dependency: RootDependency, rootViewController: RootViewController) {
-        self.rootViewController = rootViewController
-        super.init(dependency: dependency)
-    }
+
+    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
 }
 
 // MARK: - Builder
@@ -35,7 +32,7 @@ final class RootBuilder: Builder<RootDependency>, RootBuildable {
 
     func build() -> LaunchRouting {
         let viewController = RootViewController()
-        let component = RootComponent(dependency: dependency, rootViewController: viewController)
+        let component = RootComponent(dependency: dependency)
         let interactor = RootInteractor(presenter: viewController)
         let loggedOutBuilder = LoggedOutBuilder(dependency: component)
         return RootRouter(interactor: interactor, viewController: viewController, loggedOutBuilder: loggedOutBuilder)

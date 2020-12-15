@@ -2,7 +2,8 @@
 //  LoggedOutInteractor.swift
 //  RibsDog
 //
-//  Created by help.nyon on 2020/12/05.
+//  Created by PFXStudio on 2020/12/15.
+//  Copyright © 2020 help.nyon. All rights reserved.
 //
 
 import RIBs
@@ -22,6 +23,7 @@ protocol LoggedOutListener: class {
 }
 
 final class LoggedOutInteractor: PresentableInteractor<LoggedOutPresentable>, LoggedOutInteractable, LoggedOutPresentableListener {
+
     weak var router: LoggedOutRouting?
     weak var listener: LoggedOutListener?
 
@@ -40,16 +42,5 @@ final class LoggedOutInteractor: PresentableInteractor<LoggedOutPresentable>, Lo
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
-    }
-    
-    func login(withPlayer1Name player1Name: String?, player2Name: String?) {
-        let player1 = playerName(player1Name, withDefaultName: "Player 1")
-        let player2 = playerName(player2Name, withDefaultName: "Player 2")
-        print("\(player1) vs \(player2)")
-    }
-    
-    private func playerName(_ name: String?, withDefaultName defaultName: String) -> String {
-        if let name = name { return name.isEmpty ? defaultName : name }
-        return defaultName
     }
 }
