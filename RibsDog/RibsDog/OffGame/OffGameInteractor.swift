@@ -1,5 +1,5 @@
 //
-//  RootInteractor.swift
+//  OffGameInteractor.swift
 //  RibsDog
 //
 //  Created by PFXStudio on 2020/12/15.
@@ -9,28 +9,27 @@
 import RIBs
 import RxSwift
 
-protocol RootRouting: ViewableRouting {
+protocol OffGameRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
-    func routeToLoggedIn(player1: String, player2: String)
 }
 
-// viewcontroller는 RootPresentable을 통해 접근 권한이 주어짐
-protocol RootPresentable: Presentable {
-    var listener: RootPresentableListener? { get set }
+protocol OffGamePresentable: Presentable {
+    var listener: OffGamePresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
-protocol RootListener: class {
+protocol OffGameListener: class {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
-final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteractable {
-    weak var router: RootRouting?
-    weak var listener: RootListener?
+final class OffGameInteractor: PresentableInteractor<OffGamePresentable>, OffGameInteractable, OffGamePresentableListener {
+
+    weak var router: OffGameRouting?
+    weak var listener: OffGameListener?
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init(presenter: RootPresentable) {
+    override init(presenter: OffGamePresentable) {
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -40,15 +39,8 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
         // TODO: Implement business logic here.
     }
 
-    // deactive 되기 전에 호출 된다.
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
-    }
-}
-
-extension RootInteractor: RootPresentableListener {
-    func didLogin(player1: String, player2: String) {
-        self.router?.routeToLoggedIn(player1: player1, player2: player2)
     }
 }
