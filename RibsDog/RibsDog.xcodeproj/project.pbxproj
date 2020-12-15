@@ -7,7 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D354DFA2588C7E800950FC7 /* GuestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D354DF72588C7E800950FC7 /* GuestRouter.swift */; };
+		6D354DFB2588C7E800950FC7 /* GuestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D354DF82588C7E800950FC7 /* GuestBuilder.swift */; };
+		6D354DFC2588C7E800950FC7 /* GuestInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D354DF92588C7E800950FC7 /* GuestInteractor.swift */; };
+		6D354E272588C9B600950FC7 /* OffGameRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D354E222588C9B600950FC7 /* OffGameRouter.swift */; };
+		6D354E282588C9B600950FC7 /* OffGameViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D354E232588C9B600950FC7 /* OffGameViewController.storyboard */; };
+		6D354E292588C9B600950FC7 /* OffGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D354E242588C9B600950FC7 /* OffGameViewController.swift */; };
+		6D354E2A2588C9B600950FC7 /* OffGameBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D354E252588C9B600950FC7 /* OffGameBuilder.swift */; };
+		6D354E2B2588C9B600950FC7 /* OffGameInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D354E262588C9B600950FC7 /* OffGameInteractor.swift */; };
 		6D66B5AA2588883300B2878B /* RootComponent+LoggedOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D66B5A92588883300B2878B /* RootComponent+LoggedOut.swift */; };
+		6D66B5B5258893BB00B2878B /* LoggedInRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D66B5B2258893BB00B2878B /* LoggedInRouter.swift */; };
+		6D66B5B6258893BB00B2878B /* LoggedInBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D66B5B3258893BB00B2878B /* LoggedInBuilder.swift */; };
+		6D66B5B7258893BB00B2878B /* LoggedInInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D66B5B4258893BB00B2878B /* LoggedInInteractor.swift */; };
+		6D66B5C22588948600B2878B /* RootComponent+LoggedIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D66B5C12588948600B2878B /* RootComponent+LoggedIn.swift */; };
 		6D9FC3E525887DE50094CE3C /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9FC3E125887DE50094CE3C /* RootRouter.swift */; };
 		6D9FC3E625887DE50094CE3C /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9FC3E225887DE50094CE3C /* RootViewController.swift */; };
 		6D9FC3E725887DE50094CE3C /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9FC3E325887DE50094CE3C /* RootBuilder.swift */; };
@@ -51,7 +63,19 @@
 /* Begin PBXFileReference section */
 		441B02D4B6C95F579304F323 /* Pods_RibsDogTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RibsDogTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B7C1364E6DAC32C7BC9121F /* Pods-RibsDog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RibsDog.debug.xcconfig"; path = "Target Support Files/Pods-RibsDog/Pods-RibsDog.debug.xcconfig"; sourceTree = "<group>"; };
+		6D354DF72588C7E800950FC7 /* GuestRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestRouter.swift; sourceTree = "<group>"; };
+		6D354DF82588C7E800950FC7 /* GuestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestBuilder.swift; sourceTree = "<group>"; };
+		6D354DF92588C7E800950FC7 /* GuestInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestInteractor.swift; sourceTree = "<group>"; };
+		6D354E222588C9B600950FC7 /* OffGameRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffGameRouter.swift; sourceTree = "<group>"; };
+		6D354E232588C9B600950FC7 /* OffGameViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OffGameViewController.storyboard; sourceTree = "<group>"; };
+		6D354E242588C9B600950FC7 /* OffGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffGameViewController.swift; sourceTree = "<group>"; };
+		6D354E252588C9B600950FC7 /* OffGameBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffGameBuilder.swift; sourceTree = "<group>"; };
+		6D354E262588C9B600950FC7 /* OffGameInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffGameInteractor.swift; sourceTree = "<group>"; };
 		6D66B5A92588883300B2878B /* RootComponent+LoggedOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootComponent+LoggedOut.swift"; sourceTree = "<group>"; };
+		6D66B5B2258893BB00B2878B /* LoggedInRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInRouter.swift; sourceTree = "<group>"; };
+		6D66B5B3258893BB00B2878B /* LoggedInBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInBuilder.swift; sourceTree = "<group>"; };
+		6D66B5B4258893BB00B2878B /* LoggedInInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInInteractor.swift; sourceTree = "<group>"; };
+		6D66B5C12588948600B2878B /* RootComponent+LoggedIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootComponent+LoggedIn.swift"; sourceTree = "<group>"; };
 		6D9FC3E125887DE50094CE3C /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
 		6D9FC3E225887DE50094CE3C /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		6D9FC3E325887DE50094CE3C /* RootBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
@@ -113,10 +137,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6D354DDE2588C76E00950FC7 /* Guest */ = {
+			isa = PBXGroup;
+			children = (
+				6D354DF82588C7E800950FC7 /* GuestBuilder.swift */,
+				6D354DF92588C7E800950FC7 /* GuestInteractor.swift */,
+				6D354DF72588C7E800950FC7 /* GuestRouter.swift */,
+			);
+			path = Guest;
+			sourceTree = "<group>";
+		};
+		6D354E062588C8FF00950FC7 /* OffGame */ = {
+			isa = PBXGroup;
+			children = (
+				6D354E252588C9B600950FC7 /* OffGameBuilder.swift */,
+				6D354E262588C9B600950FC7 /* OffGameInteractor.swift */,
+				6D354E222588C9B600950FC7 /* OffGameRouter.swift */,
+				6D354E232588C9B600950FC7 /* OffGameViewController.storyboard */,
+				6D354E242588C9B600950FC7 /* OffGameViewController.swift */,
+			);
+			path = OffGame;
+			sourceTree = "<group>";
+		};
+		6D66B5B12588939D00B2878B /* LoggedIn */ = {
+			isa = PBXGroup;
+			children = (
+				6D66B5B3258893BB00B2878B /* LoggedInBuilder.swift */,
+				6D66B5B4258893BB00B2878B /* LoggedInInteractor.swift */,
+				6D66B5B2258893BB00B2878B /* LoggedInRouter.swift */,
+			);
+			path = LoggedIn;
+			sourceTree = "<group>";
+		};
 		6D9FC3E025887DD20094CE3C /* Root */ = {
 			isa = PBXGroup;
 			children = (
 				6D9FC3E325887DE50094CE3C /* RootBuilder.swift */,
+				6D66B5C12588948600B2878B /* RootComponent+LoggedIn.swift */,
 				6D66B5A92588883300B2878B /* RootComponent+LoggedOut.swift */,
 				6D9FC3E425887DE50094CE3C /* RootInteractor.swift */,
 				6D9FC3E125887DE50094CE3C /* RootRouter.swift */,
@@ -174,9 +231,12 @@
 			children = (
 				6D9FC3F225887FB00094CE3C /* AppStart */,
 				6DEB2EC3257B569500B99C37 /* Assets.xcassets */,
+				6D354DDE2588C76E00950FC7 /* Guest */,
 				6DEB2EC8257B569500B99C37 /* Info.plist */,
+				6D66B5B12588939D00B2878B /* LoggedIn */,
 				6D9FC40F258884340094CE3C /* LoggedOut */,
 				6DEB2EBD257B569400B99C37 /* Main.storyboard */,
+				6D354E062588C8FF00950FC7 /* OffGame */,
 				6DEB2EC0257B569400B99C37 /* RibsDog.xcdatamodeld */,
 				6D9FC3E025887DD20094CE3C /* Root */,
 				6DEB2EBB257B569400B99C37 /* ViewController.swift */,
@@ -338,6 +398,7 @@
 				6DEB2EC4257B569500B99C37 /* Assets.xcassets in Resources */,
 				6D9FC416258884460094CE3C /* LoggedOutViewController.storyboard in Resources */,
 				6DEB2EBF257B569400B99C37 /* Main.storyboard in Resources */,
+				6D354E282588C9B600950FC7 /* OffGameViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,11 +530,22 @@
 				6D9FC418258884460094CE3C /* LoggedOutBuilder.swift in Sources */,
 				6D9FC3F425887FCC0094CE3C /* AppComponent.swift in Sources */,
 				6D9FC3E525887DE50094CE3C /* RootRouter.swift in Sources */,
+				6D66B5B6258893BB00B2878B /* LoggedInBuilder.swift in Sources */,
 				6D9FC3E825887DE50094CE3C /* RootInteractor.swift in Sources */,
+				6D354E2A2588C9B600950FC7 /* OffGameBuilder.swift in Sources */,
+				6D354DFA2588C7E800950FC7 /* GuestRouter.swift in Sources */,
 				6D9FC419258884460094CE3C /* LoggedOutInteractor.swift in Sources */,
+				6D66B5B7258893BB00B2878B /* LoggedInInteractor.swift in Sources */,
 				6D9FC415258884460094CE3C /* LoggedOutRouter.swift in Sources */,
 				6D66B5AA2588883300B2878B /* RootComponent+LoggedOut.swift in Sources */,
 				6DEB2EBC257B569400B99C37 /* ViewController.swift in Sources */,
+				6D66B5C22588948600B2878B /* RootComponent+LoggedIn.swift in Sources */,
+				6D354E272588C9B600950FC7 /* OffGameRouter.swift in Sources */,
+				6D354DFB2588C7E800950FC7 /* GuestBuilder.swift in Sources */,
+				6D66B5B5258893BB00B2878B /* LoggedInRouter.swift in Sources */,
+				6D354E292588C9B600950FC7 /* OffGameViewController.swift in Sources */,
+				6D354E2B2588C9B600950FC7 /* OffGameInteractor.swift in Sources */,
+				6D354DFC2588C7E800950FC7 /* GuestInteractor.swift in Sources */,
 				6DEB2EB8257B569400B99C37 /* AppDelegate.swift in Sources */,
 				6DEB2EC2257B569400B99C37 /* RibsDog.xcdatamodeld in Sources */,
 				6D9FC3E725887DE50094CE3C /* RootBuilder.swift in Sources */,

@@ -18,12 +18,13 @@ protocol LoggedOutPresentable: Presentable {
     // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
+// 다른 RIBs의 Interactor에 호출이 필요한 경우 사용함.
 protocol LoggedOutListener: class {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    func didLogin(player1: String, player2: String)
 }
 
 final class LoggedOutInteractor: PresentableInteractor<LoggedOutPresentable>, LoggedOutInteractable, LoggedOutPresentableListener {
-
     weak var router: LoggedOutRouting?
     weak var listener: LoggedOutListener?
 
@@ -42,5 +43,9 @@ final class LoggedOutInteractor: PresentableInteractor<LoggedOutPresentable>, Lo
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+
+    func requestLogin(player1: String, player2: String) {
+        self.listener?.didLogin(player1: player1, player2: player2)
     }
 }

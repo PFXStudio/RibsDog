@@ -16,13 +16,46 @@
                     <view key="view" contentMode="scaleToFill" id="BNZ-bO-rhc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d4j-gI-Pmd">
+                                <rect key="frame" x="16" y="20" width="343" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eSZ-o9-g7X">
+                                <rect key="frame" x="16" y="62" width="343" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WG5-w7-Jz1">
+                                <rect key="frame" x="168.5" y="318.5" width="38" height="30"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="touchedLoginButton:" destination="vKn-9P-Ny8" eventType="touchUpInside" id="BfD-mc-QqZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="HgA-Aw-ocO"/>
                         <color key="backgroundColor" systemColor="systemTealColor"/>
+                        <constraints>
+                            <constraint firstItem="HgA-Aw-ocO" firstAttribute="trailing" secondItem="d4j-gI-Pmd" secondAttribute="trailing" constant="16" id="AVk-s6-KdL"/>
+                            <constraint firstItem="d4j-gI-Pmd" firstAttribute="top" secondItem="HgA-Aw-ocO" secondAttribute="top" constant="20" id="QUD-CV-lw1"/>
+                            <constraint firstItem="HgA-Aw-ocO" firstAttribute="trailing" secondItem="eSZ-o9-g7X" secondAttribute="trailing" constant="16" id="Sgc-XO-07J"/>
+                            <constraint firstItem="d4j-gI-Pmd" firstAttribute="leading" secondItem="HgA-Aw-ocO" secondAttribute="leading" constant="16" id="YIE-Zf-G4w"/>
+                            <constraint firstItem="WG5-w7-Jz1" firstAttribute="centerX" secondItem="BNZ-bO-rhc" secondAttribute="centerX" id="jss-I9-Im5"/>
+                            <constraint firstItem="WG5-w7-Jz1" firstAttribute="centerY" secondItem="BNZ-bO-rhc" secondAttribute="centerY" id="m6y-3N-10Q"/>
+                            <constraint firstItem="eSZ-o9-g7X" firstAttribute="leading" secondItem="HgA-Aw-ocO" secondAttribute="leading" constant="16" id="xe3-uh-bCf"/>
+                            <constraint firstItem="eSZ-o9-g7X" firstAttribute="top" secondItem="d4j-gI-Pmd" secondAttribute="bottom" constant="8" symbolic="YES" id="y34-F8-KI0"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="playerTextField1" destination="d4j-gI-Pmd" id="EO2-DG-Ln3"/>
+                        <outlet property="playerTextField2" destination="eSZ-o9-g7X" id="AWH-yP-cyo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k0X-am-vwV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="244" y="205"/>
+            <point key="canvasLocation" x="244" y="204.64767616191907"/>
         </scene>
     </scenes>
     <resources>
