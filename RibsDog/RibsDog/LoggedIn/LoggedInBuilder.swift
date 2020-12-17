@@ -41,6 +41,11 @@ final class LoggedInBuilder: Builder<LoggedInDependency>, LoggedInBuildable {
         let component = LoggedInComponent(dependency: dependency)
         let interactor = LoggedInInteractor()
         interactor.listener = listener
-        return LoggedInRouter(interactor: interactor, viewController: component.LoggedInViewController)
+        let offGameBuilder = OffGameBuilder(dependency: component)
+        let ticTacToeBuilder = TicTacToeBuilder(dependency: component)
+        return LoggedInRouter(interactor: interactor,
+                              viewController: component.LoggedInViewController,
+                              offGameBuilder: offGameBuilder,
+                              ticTacToeBuilder: ticTacToeBuilder)
     }
 }
