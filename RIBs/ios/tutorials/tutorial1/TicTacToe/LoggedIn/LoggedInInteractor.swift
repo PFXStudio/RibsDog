@@ -17,22 +17,16 @@
 import RIBs
 import RxSwift
 
-enum PlayerType: Int {
-    case player1 = 1
-    case player2
-}
-
 protocol LoggedInRouting: Routing {
     func cleanupViews()
-    func routeToTicTacToe()
-    func routeToOffGame()
+    func routeToOffGame(with games: [Game])
+    func routeToGame(with gameBuilder: GameBuildable)
 }
 
 protocol LoggedInListener: class {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
-// 접근 권한 LoggedInInteractable 프로토콜
 final class LoggedInInteractor: Interactor, LoggedInInteractable {
 
     weak var router: LoggedInRouting?
@@ -40,11 +34,15 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init() {}
+    init(games: [Game]) {
+        self.games = games
+        super.init()
+    }
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
+
+        router?.routeToOffGame(with: games)
     }
 
     override func willResignActive() {
@@ -56,13 +54,18 @@ final class LoggedInInteractor: Interactor, LoggedInInteractable {
 
     // MARK: - OffGameListener
 
-    func startTicTacToe() {
-        router?.routeToTicTacToe()
+    func startGame(with gameBuilder: GameBuildable) {
+        router?.routeToGame(with: gameBuilder)
     }
 
     // MARK: - TicTacToeListener
 
-    func gameDidEnd() {
-        router?.routeToOffGame()
+    func gameDidEnd(with winner: PlayerType?) {
+        router?.routeToOffGame(with: games)
     }
+
+    // MARK: - Private
+
+    private var games = [Game]()
+
 }

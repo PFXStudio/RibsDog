@@ -1,34 +1,40 @@
 //
-//  OffGameInteractor.swift
+//  TieTaeToeInteractor.swift
 //  RibsDog
 //
-//  Created by PFXStudio on 2020/12/15.
+//  Created by PFXStudio on 2020/12/16.
 //  Copyright © 2020 help.nyon. All rights reserved.
 //
 
 import RIBs
 import RxSwift
 
-protocol OffGameRouting: ViewableRouting {
+struct GameConstants {
+    static let maxRow = 3
+    static let maxCol = 3
+}
+
+protocol TieTaeToeRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
-protocol OffGamePresentable: Presentable {
-    var listener: OffGamePresentableListener? { get set }
+protocol TieTaeToePresentable: Presentable {
+    var listener: TieTaeToePresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
-protocol OffGameListener: class {
-    func requestStart()
+protocol TieTaeToeListener: class {
+    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
-final class OffGameInteractor: PresentableInteractor<OffGamePresentable>, OffGameInteractable {
-    weak var router: OffGameRouting?
-    weak var listener: OffGameListener?
+final class TieTaeToeInteractor: PresentableInteractor<TieTaeToePresentable>, TieTaeToeInteractable, TieTaeToePresentableListener {
+
+    weak var router: TieTaeToeRouting?
+    weak var listener: TieTaeToeListener?
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init(presenter: OffGamePresentable) {
+    override init(presenter: TieTaeToePresentable) {
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -41,11 +47,5 @@ final class OffGameInteractor: PresentableInteractor<OffGamePresentable>, OffGam
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
-    }
-}
-
-extension OffGameInteractor: OffGamePresentableListener {
-    func requestStart() {
-        self.listener?.requestStart()
     }
 }
