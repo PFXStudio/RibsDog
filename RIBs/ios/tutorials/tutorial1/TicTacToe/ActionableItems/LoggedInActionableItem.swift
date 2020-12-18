@@ -14,8 +14,8 @@
 //  limitations under the License.
 //
 
-import RIBs
+import RxSwift
 
-public class LaunchGameWorkflow: Workflow<RootActionableItem> {
-    init(url: URL) { super.init() }
+public protocol LoggedInActionableItem: class {
+    func launchGame(with id: String?) -> Observable<(LoggedInActionableItem, ())>
 }
