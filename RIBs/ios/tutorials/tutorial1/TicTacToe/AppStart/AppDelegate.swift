@@ -36,14 +36,26 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
 
-        let launchRouter = RootBuilder(dependency: AppComponent()).build()
+        let result = RootBuilder(dependency: AppComponent()).build()
+        let launchRouter = result.launchRouter
         self.launchRouter = launchRouter
+        urlHandler = result.urlHandler
         launchRouter.launch(from: window)
 
         return true
     }
 
+    public func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        urlHandler?.handle(url)
+        return true
+    }
+    
     // MARK: - Private
 
     private var launchRouter: LaunchRouting?
+    private var urlHandler: UrlHandler?
+}
+
+protocol UrlHandler: class {
+    func handle(_ url: URL)
 }
