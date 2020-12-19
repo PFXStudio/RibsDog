@@ -19,6 +19,7 @@ fileprivate struct Constants {
 
 protocol TicTacToePresentableListener: class {
     func placeCurrentPlayerMark(row: Int, col: Int)
+    func completed()
 }
 
 final class TicTacToeViewController: UIViewController, TicTacToePresentable, TicTacToeViewControllable {
@@ -34,6 +35,15 @@ final class TicTacToeViewController: UIViewController, TicTacToePresentable, Tic
     func setCell(row: Int, col: Int, playerType: PlayerType) {
         guard let cell = collectionView.cellForItem(at: IndexPath(row: row * GameConstant.maxCol + col, section: 0)) as? TicTacToeCell else { return }
         cell.selected(color: playerType.color)
+    }
+    
+    func announce(message: String) {
+        let alert = UIAlertController(title: message, message: nil, preferredStyle: .alert)
+        let closeAction = UIAlertAction(title: "Close Game", style: UIAlertAction.Style.default) { [weak self] _ in
+            self?.listener?.completed()
+        }
+        alert.addAction(closeAction)
+        present(alert, animated: true, completion: nil)
     }
 }
 
