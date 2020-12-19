@@ -52,7 +52,10 @@ extension RootRouter: RootRouting {
             self.loggedOut = nil
         }
         
-        let loggedIn = self.loggedInBuilder.build(withListener: self.interactor)
+        let loggedIn = self.loggedInBuilder.build(withListener: self.interactor,
+                                                  player1Name: player1,
+                                                  player2Name: player2
+        )
         attachChild(loggedIn)
     }
 }

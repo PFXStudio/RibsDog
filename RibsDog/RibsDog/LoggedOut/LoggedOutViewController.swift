@@ -28,8 +28,8 @@ final class LoggedOutViewController: UIViewController, LoggedOutPresentable, Log
     }
     
     @IBAction func touchedLoginButton(_ sender: Any) {
-        let player1 = self.playerTextField1.text ?? "player1"
-        let player2 = self.playerTextField2.text ?? "player2"
-        self.listener?.requestLogin(player1: player1, player2: player2)
+        let player1 = self.playerTextField1.text == "" ? "player1" : self.playerTextField1.text
+        let player2 = self.playerTextField2.text == "" ? "player2" : self.playerTextField2.text
+        self.listener?.requestLogin(player1: player1!, player2: player2!)
     }
 }
