@@ -20,7 +20,8 @@ protocol TicTacToeRouting: ViewableRouting {
 
 protocol TicTacToePresentable: Presentable {
     var listener: TicTacToePresentableListener? { get set }
-    func setCell(row: Int, col: Int, playerType: PlayerType)
+    var updateCellSubject: PublishSubject<(row: Int, col: Int, playerType: PlayerType)> { get set }
+//    func setCell
     #warning("파선생 궁금함. 콜백.")
 //    func announce(winner: PlayerType?, withCompletionHandler handler: @escaping () -> ())
     func announce(message: String)
@@ -82,8 +83,7 @@ extension TicTacToeInteractor: TicTacToePresentableListener {
         guard board[row][col] == nil else { return }
         let currentPlayer = getAndFlipCurrentPlayer()
         self.board[row][col] = currentPlayer
-        self.presenter.setCell(row: row, col: col, playerType: currentPlayer)
-        
+        self.presenter.updateCellSubject.onNext((row: row, col: col, playerType: currentPlayer))
         let endGame = checkEndGame()
         if let winner = endGame.winner {
             presenter.announce(message: winner == .player1 ? self.player1Name : self.player2Name)
