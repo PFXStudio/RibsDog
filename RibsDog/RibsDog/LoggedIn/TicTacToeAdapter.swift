@@ -9,7 +9,7 @@
 import RIBs
 
 class TicTacToeAdapter: TicTacToeListener {
-    func didEnd(winner: PlayerType) {
+    func didEnd(winner: PlayerType?) {
         
     }
 }

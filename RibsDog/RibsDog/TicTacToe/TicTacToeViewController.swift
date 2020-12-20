@@ -23,24 +23,28 @@ protocol TicTacToePresentableListener: class {
 }
 
 final class TicTacToeViewController: UIViewController, TicTacToePresentable, TicTacToeViewControllable {
-    @IBOutlet weak var collectionView: UICollectionView!
     weak var listener: TicTacToePresentableListener?
+    var updateCellSubject = PublishSubject<(row: Int, col: Int, playerType: PlayerType)>()
+    private var disposeBag = DisposeBag()
+    @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.yellow
         guard let layout = collectionView.collectionViewLayout as? TicTacToeFlowLayout else { return }
         layout.initialize()
-    }
-    
-    func setCell(row: Int, col: Int, playerType: PlayerType) {
-        guard let cell = collectionView.cellForItem(at: IndexPath(row: row * GameConstant.maxCol + col, section: 0)) as? TicTacToeCell else { return }
-        cell.selected(color: playerType.color)
+        self.updateCellSubject.asObserver()
+            .subscribe { [weak self] (row, col, playerType) in
+                guard let self = self, let cell = self.collectionView.cellForItem(at: IndexPath(row: row * GameConstant.maxCol + col, section: 0)) as? TicTacToeCell else { return }
+                cell.selected(color: playerType.color)
+            }
+            .disposed(by: self.disposeBag)
     }
     
     func announce(message: String) {
         let alert = UIAlertController(title: message, message: nil, preferredStyle: .alert)
         let closeAction = UIAlertAction(title: "Close Game", style: UIAlertAction.Style.default) { [weak self] _ in
-            self?.listener?.completed()
+            guard let self = self else { return }
+            self.listener?.completed()
         }
         alert.addAction(closeAction)
         present(alert, animated: true, completion: nil)

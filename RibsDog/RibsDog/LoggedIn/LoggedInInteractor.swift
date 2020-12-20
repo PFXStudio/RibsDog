@@ -44,7 +44,7 @@ extension LoggedInInteractor {
         router?.routeToTicTacToe()
     }
     
-    func didEnd(winner: PlayerType) {
+    func didEnd(winner: PlayerType?) {
         
     }
 }
