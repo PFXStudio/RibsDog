@@ -20,11 +20,10 @@ protocol TicTacToeRouting: ViewableRouting {
 
 protocol TicTacToePresentable: Presentable {
     var listener: TicTacToePresentableListener? { get set }
-    var updateCellSubject: PublishSubject<(row: Int, col: Int, playerType: PlayerType)> { get set }
-//    func setCell
+    var updateCellSubject: PublishSubject<(row: Int, col: Int, playerType: PlayerType)> { get }
     #warning("파선생 궁금함. 콜백.")
 //    func announce(winner: PlayerType?, withCompletionHandler handler: @escaping () -> ())
-    func announce(message: String)
+    var showAnnounceSubject: PublishSubject<String> { get }
 }
 
 protocol TicTacToeListener: class {
@@ -39,6 +38,9 @@ final class TicTacToeInteractor: PresentableInteractor<TicTacToePresentable>, Ti
     private let player2Name: String
     private var currentPlayer = PlayerType.player1
     private var board = [[PlayerType?]]()
+    private var disposeBag = DisposeBag()
+    var requestSubject = PublishSubject<TicTacToeRequestType>()
+
     init(presenter: TicTacToePresentable,
                   player1Name: String,
                   player2Name: String) {
@@ -50,8 +52,37 @@ final class TicTacToeInteractor: PresentableInteractor<TicTacToePresentable>, Ti
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
         initBoard()
+        self.requestSubject
+            .subscribe(onNext: { [weak self] type in
+                guard let self = self, let listener = self.listener else { return }
+                switch type {
+                case .viewDidLoad: break
+                case .placeCurrentPlayerMark(row: let row, col: let col):
+                    guard self.board[row][col] == nil else { return }
+                    let currentPlayer = self.getAndFlipCurrentPlayer()
+                    self.board[row][col] = currentPlayer
+                    self.presenter.updateCellSubject.onNext((row: row, col: col, playerType: currentPlayer))
+                    let endGame = self.checkEndGame()
+                    if let winner = endGame.winner {
+                        self.presenter.showAnnounceSubject.onNext(winner == .player1 ? self.player1Name : self.player2Name)
+                        return
+                    }
+                    
+                    if endGame.didEnd == true {
+                        self.presenter.showAnnounceSubject.onNext("It's Tie!!!")
+                        return
+                    }
+
+                    break
+                case .completed:
+                    guard let winner = self.checkWinner() else { return }
+                    listener.didEnd(winner: winner)
+                }
+            })
+            .disposed(by: self.disposeBag)
+        
+
     }
 
     override func willResignActive() {
@@ -67,33 +98,10 @@ final class TicTacToeInteractor: PresentableInteractor<TicTacToePresentable>, Ti
 }
 
 extension TicTacToeInteractor: TicTacToePresentableListener {
-    func completed() {
-        if let winner = checkWinner() {
-            self.listener?.didEnd(winner: winner)
-        }
-    }
-    
     private func getAndFlipCurrentPlayer() -> PlayerType {
         let player = self.currentPlayer
         self.currentPlayer = player == .player1 ? .player2 : .player1
         return player
-    }
-    
-    func placeCurrentPlayerMark(row: Int, col: Int) {
-        guard board[row][col] == nil else { return }
-        let currentPlayer = getAndFlipCurrentPlayer()
-        self.board[row][col] = currentPlayer
-        self.presenter.updateCellSubject.onNext((row: row, col: col, playerType: currentPlayer))
-        let endGame = checkEndGame()
-        if let winner = endGame.winner {
-            presenter.announce(message: winner == .player1 ? self.player1Name : self.player2Name)
-            return
-        }
-        
-        if endGame.didEnd == true {
-            presenter.announce(message: "It's Tie!!!")
-            return
-        }
     }
     
     func checkEndGame() -> (winner: PlayerType?, didEnd: Bool) {
