@@ -17,14 +17,19 @@ fileprivate struct Constants {
     static let defaultColor = UIColor.white
 }
 
+enum TicTacToeRequestType {
+    case completed
+    case viewDidLoad
+    case placeCurrentPlayerMark(row: Int, col: Int)
+}
 protocol TicTacToePresentableListener: class {
-    func placeCurrentPlayerMark(row: Int, col: Int)
-    func completed()
+    var requestSubject: PublishSubject<TicTacToeRequestType> { get }
 }
 
 final class TicTacToeViewController: UIViewController, TicTacToePresentable, TicTacToeViewControllable {
     weak var listener: TicTacToePresentableListener?
     var updateCellSubject = PublishSubject<(row: Int, col: Int, playerType: PlayerType)>()
+    var showAnnounceSubject = PublishSubject<String>()
     private var disposeBag = DisposeBag()
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
@@ -38,16 +43,20 @@ final class TicTacToeViewController: UIViewController, TicTacToePresentable, Tic
                 cell.selected(color: playerType.color)
             }
             .disposed(by: self.disposeBag)
-    }
-    
-    func announce(message: String) {
-        let alert = UIAlertController(title: message, message: nil, preferredStyle: .alert)
-        let closeAction = UIAlertAction(title: "Close Game", style: UIAlertAction.Style.default) { [weak self] _ in
-            guard let self = self else { return }
-            self.listener?.completed()
-        }
-        alert.addAction(closeAction)
-        present(alert, animated: true, completion: nil)
+        
+        self.showAnnounceSubject.asObserver()
+            .subscribe(onNext: { [weak self] message in
+                guard let self = self else { return }
+                let alert = UIAlertController(title: message, message: nil, preferredStyle: .alert)
+                let closeAction = UIAlertAction(title: "Close Game", style: UIAlertAction.Style.default) { [weak self] _ in
+                    guard let self = self else { return }
+                    self.listener?.requestSubject.onNext(.completed)
+                }
+                alert.addAction(closeAction)
+                self.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: self.disposeBag)
+        self.listener?.requestSubject.onNext(.viewDidLoad)
     }
 }
 
@@ -70,6 +79,6 @@ extension TicTacToeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let row = indexPath.row / GameConstant.maxCol
         let col = indexPath.row - (row * GameConstant.maxRow)
-        listener?.placeCurrentPlayerMark(row: row, col: col)
+        listener?.requestSubject.onNext(.placeCurrentPlayerMark(row: row, col: col))
     }
 }

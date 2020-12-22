@@ -8,7 +8,7 @@
 
 import RIBs
 
-protocol LoggedInInteractable: Interactable, OffGameListener, TicTacToeListener {
+protocol LoggedInInteractable: Interactable, OffGameListener, TicTacToeListener, GameListener {
     var router: LoggedInRouting? { get set }
     var listener: LoggedInListener? { get set }
 }
@@ -68,5 +68,9 @@ final class LoggedInRouter: Router<LoggedInInteractable>, LoggedInRouting {
         currentChild = child
         attachChild(child)
         viewController.present(viewController: child.viewControllable)
+    }
+    
+    func routeToOffGame(with games: [Game]) {
+        
     }
 }
