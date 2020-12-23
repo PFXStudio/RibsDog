@@ -2,7 +2,8 @@
 //  LoggedOutBuilder.swift
 //  RibsDog
 //
-//  Created by help.nyon on 2020/12/05.
+//  Created by PFXStudio on 2020/12/15.
+//  Copyright © 2020 help.nyon. All rights reserved.
 //
 
 import RIBs
@@ -30,7 +31,9 @@ final class LoggedOutBuilder: Builder<LoggedOutDependency>, LoggedOutBuildable {
     }
 
     func build(withListener listener: LoggedOutListener) -> LoggedOutRouting {
-        let viewController = LoggedOutViewController()
+        let component = LoggedOutComponent(dependency: dependency)
+        let identifier = String(describing: LoggedOutViewController.self)
+        let viewController = UIStoryboard(name: identifier, bundle: nil).instantiateViewController(withIdentifier: identifier) as! LoggedOutViewController
         let interactor = LoggedOutInteractor(presenter: viewController)
         interactor.listener = listener
         return LoggedOutRouter(interactor: interactor, viewController: viewController)

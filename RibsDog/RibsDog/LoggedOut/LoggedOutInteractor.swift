@@ -2,7 +2,8 @@
 //  LoggedOutInteractor.swift
 //  RibsDog
 //
-//  Created by help.nyon on 2020/12/05.
+//  Created by PFXStudio on 2020/12/15.
+//  Copyright © 2020 help.nyon. All rights reserved.
 //
 
 import RIBs
@@ -17,8 +18,10 @@ protocol LoggedOutPresentable: Presentable {
     // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
+// 다른 RIBs의 Interactor에 호출이 필요한 경우 사용함.
 protocol LoggedOutListener: class {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    func didLogin(player1: String, player2: String)
 }
 
 final class LoggedOutInteractor: PresentableInteractor<LoggedOutPresentable>, LoggedOutInteractable, LoggedOutPresentableListener {
@@ -41,15 +44,8 @@ final class LoggedOutInteractor: PresentableInteractor<LoggedOutPresentable>, Lo
         super.willResignActive()
         // TODO: Pause any business logic.
     }
-    
-    func login(withPlayer1Name player1Name: String?, player2Name: String?) {
-        let player1 = playerName(player1Name, withDefaultName: "Player 1")
-        let player2 = playerName(player2Name, withDefaultName: "Player 2")
-        print("\(player1) vs \(player2)")
-    }
-    
-    private func playerName(_ name: String?, withDefaultName defaultName: String) -> String {
-        if let name = name { return name.isEmpty ? defaultName : name }
-        return defaultName
+
+    func requestLogin(player1: String, player2: String) {
+        self.listener?.didLogin(player1: player1, player2: player2)
     }
 }
