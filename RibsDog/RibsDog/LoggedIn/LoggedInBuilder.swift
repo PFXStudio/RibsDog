@@ -29,7 +29,6 @@ final class LoggedInComponent: Component<LoggedInDependency> {
         self.player2Name = player2Name
         super.init(dependency: dependency)
     }
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
 }
 
 // MARK: - Builder
