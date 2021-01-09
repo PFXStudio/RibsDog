@@ -28,6 +28,8 @@
 		6D7B7B1D258AE2B000AD108B /* TicTacToeFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7B7B1C258AE2B000AD108B /* TicTacToeFlowLayout.swift */; };
 		6D7B7B30258B14B500AD108B /* PlayerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7B7B2F258B14B500AD108B /* PlayerType.swift */; };
 		6D832C8D258E1CEC0006CBCF /* TicTacToeAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D832C8C258E1CEC0006CBCF /* TicTacToeAdapter.swift */; };
+		6D8679EE25A99AB100206239 /* LoggedInInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8679ED25A99AB100206239 /* LoggedInInteractorTests.swift */; };
+		6D8679FC25A9BD0C00206239 /* LoggedInMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8679FB25A9BD0C00206239 /* LoggedInMocks.swift */; };
 		6D9FC3E525887DE50094CE3C /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9FC3E125887DE50094CE3C /* RootRouter.swift */; };
 		6D9FC3E625887DE50094CE3C /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9FC3E225887DE50094CE3C /* RootViewController.swift */; };
 		6D9FC3E725887DE50094CE3C /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9FC3E325887DE50094CE3C /* RootBuilder.swift */; };
@@ -92,6 +94,8 @@
 		6D7B7B1C258AE2B000AD108B /* TicTacToeFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeFlowLayout.swift; sourceTree = "<group>"; };
 		6D7B7B2F258B14B500AD108B /* PlayerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerType.swift; sourceTree = "<group>"; };
 		6D832C8C258E1CEC0006CBCF /* TicTacToeAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeAdapter.swift; sourceTree = "<group>"; };
+		6D8679ED25A99AB100206239 /* LoggedInInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInInteractorTests.swift; sourceTree = "<group>"; };
+		6D8679FB25A9BD0C00206239 /* LoggedInMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInMocks.swift; sourceTree = "<group>"; };
 		6D9FC3E125887DE50094CE3C /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
 		6D9FC3E225887DE50094CE3C /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		6D9FC3E325887DE50094CE3C /* RootBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
@@ -208,6 +212,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		6D8679EC25A99A8A00206239 /* Interactors */ = {
+			isa = PBXGroup;
+			children = (
+				6D8679ED25A99AB100206239 /* LoggedInInteractorTests.swift */,
+				6D8679FB25A9BD0C00206239 /* LoggedInMocks.swift */,
+			);
+			path = Interactors;
+			sourceTree = "<group>";
+		};
 		6D9FC3E025887DD20094CE3C /* Root */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,6 +300,7 @@
 		6DEB2ED0257B569500B99C37 /* RibsDogTests */ = {
 			isa = PBXGroup;
 			children = (
+				6D8679EC25A99A8A00206239 /* Interactors */,
 				6DEB2ED1257B569500B99C37 /* RibsDogTests.swift */,
 				6DEB2ED3257B569500B99C37 /* Info.plist */,
 			);
@@ -363,6 +377,7 @@
 				6DEB2EC9257B569500B99C37 /* Sources */,
 				6DEB2ECA257B569500B99C37 /* Frameworks */,
 				6DEB2ECB257B569500B99C37 /* Resources */,
+				60B20FF80DA427E550997EA3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -512,6 +527,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		60B20FF80DA427E550997EA3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RibsDogTests/Pods-RibsDogTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RibsDogTests/Pods-RibsDogTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RibsDogTests/Pods-RibsDogTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		920257DDD36DC148E9FF990E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -613,6 +645,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D8679FC25A9BD0C00206239 /* LoggedInMocks.swift in Sources */,
+				6D8679EE25A99AB100206239 /* LoggedInInteractorTests.swift in Sources */,
 				6DEB2ED2257B569500B99C37 /* RibsDogTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -784,6 +818,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8CABCZMNNS;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = RibsDog/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -805,6 +840,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8CABCZMNNS;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = RibsDog/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -833,6 +869,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nyon.RibsDogTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -856,6 +893,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nyon.RibsDogTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
