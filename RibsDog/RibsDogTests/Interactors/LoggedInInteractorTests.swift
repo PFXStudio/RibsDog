@@ -1,34 +1,28 @@
 import Quick
+import Nimble
 @testable import RibsDog
 
 class LoggedInInteractorTests: QuickSpec {
     override func spec() {
         // Given
         var interactor: LoggedInInteractor!
+        var listener: LoggedInListenerMock!
+        var router: LoggedInRouterMock!
         describe("LoggedIninteractor 테스트") {
             beforeEach {
                 // prepare
                 interactor = LoggedInInteractor()
-                interactor.listener 
-                interactor.router
-            }
-            // When
-            context("액티브를 호출하면") {
-                // Then
-                it("내부 변수 초기화가 되었는지 확인 해야 함.") {
-                }
-            }
-        }
-        
-        // Given
-        describe("LoggedIninteractor 테스트") {
-            beforeEach {
-                // prepare
+                listener = LoggedInListenerMock()
+                interactor.listener = listener
+                router = LoggedInRouterMock(interactor: interactor)
+                interactor.router = router
             }
             // When
             context("requestStart 호출하면") {
                 // Then
                 it("TicTacToe로 라우팅 돼야 함") {
+                    interactor.requestStart()
+                    expect(router.setRouteToTicTacToeCount).to(equal(1))
                 }
             }
         }
