@@ -21,6 +21,8 @@ target 'RibsDog' do
   target 'RibsDogTests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'Quick'
+    pod 'Nimble'
   end
 
   target 'RibsDogUITests' do
